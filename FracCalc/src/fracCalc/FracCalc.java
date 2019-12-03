@@ -1,11 +1,15 @@
 package fracCalc;
-
+import java.util.*;
 public class FracCalc {
-
+/*How do add?
+ */
+ 
     public static void main(String[] args) 
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
-
+    	Scanner enter = new Scanner(System.in);
+    	String string = enter.nextLine();
+    	String answer = produceAnswer(string);
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
