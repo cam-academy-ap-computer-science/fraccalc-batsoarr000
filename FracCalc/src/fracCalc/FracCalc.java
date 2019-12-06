@@ -1,32 +1,62 @@
 package fracCalc;
-import java.util.*;
-public class FracCalc {
-/*How do add?
- */
- 
-    public static void main(String[] args) 
-    {
-        // TODO: Read the input from the user and call produceAnswer with an equation
-    	Scanner enter = new Scanner(System.in);
-    	String string = enter.nextLine();
-    	String answer = produceAnswer(string);
-    }
-    
-    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
-    // This function takes a String 'input' and produces the result
-    //
-    // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
-    //      e.g. input ==> "1/2 + 3/4"
-    //        
-    // The function should return the result of the fraction after it has been calculated
-    //      e.g. return ==> "1_1/4"
-    public static String produceAnswer(String input)
-    { 
-        // TODO: Implement this function to produce the solution to the input
-        
-        return "";
-    }
 
-    // TODO: Fill in the space below with any helper methods that you think you will need
-    
+import java.util.*;
+
+public class FracCalc {
+	/*
+	 * Create code that sets strings that the user assigns, ask 'calculate fraction
+	 * or quit' run string through produceanswer method
+	 * 
+	 * produceanswer breaks up string into three parts, first fraction, operator,
+	 * second fraction adds and returns ther answer
+	 * 
+	 * main continues to ask for string until user types quit
+	 */
+
+	public static void main(String[] args) {
+		// TODO: Read the input from the user and call produceAnswer with an equation
+		String string = "";
+		Scanner enter = new Scanner(System.in);
+		while (string.contentEquals("quit")) {
+			System.out.println("Cal or quit");
+			string = enter.next();
+			if (string == "Cal") {
+				System.out.println("Enter fractions");
+				String fraction = enter.nextLine();
+				String answer = produceAnswer(fraction);
+				System.out.println(answer);
+			}
+		}
+	}
+
+	/*
+	 * ** IMPORTANT ** DO NOT DELETE THIS FUNCTION. This function will be used to
+	 * test your code This function takes a String 'input' and produces the result
+	 *
+	 * input is a fraction string that needs to be evaluated. For your program, this
+	 * will be the user input. e.g. input ==> "1/2 + 3/4"
+	 * 
+	 * The function should return the result of the fraction after it has been
+	 * calculated e.g. return ==> "1_1/4"
+	 */
+	public static String produceAnswer(String input) { 
+		// TODO: Implement this function to produce the solution to the input
+		String[] parts = new String[2];
+		parts[0] = input.substring(0, 4);
+		if (input == "+") {
+			parts[1] = "+";
+		} else if (input == "-") {
+			parts[1] = "-";
+		} else if (input == "*") {
+			parts[1] = "*";
+		} else if (input == "/") {
+			parts[1] = "/";
+		}
+		parts[2] = input.substring(8, 12);
+		return parts[2];
+	}
+
+	// TODO: Fill in the space below with any helper methods that you think you will
+	// need
+
 }
