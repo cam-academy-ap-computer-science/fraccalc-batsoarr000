@@ -17,14 +17,13 @@ public class FracCalc {
 		// TODO: Read the input from the user and call produceAnswer with an equation
 		String string = "";
 		Scanner enter = new Scanner(System.in);
-		while (string.contentEquals("quit")) {
-			System.out.println("Cal or quit");
-			string = enter.next();
-			if (string == "Cal") {
-				System.out.println("Enter fractions");
-				String fraction = enter.nextLine();
-				String answer = produceAnswer(fraction);
-				System.out.println(answer);
+		while (!string.contentEquals("quit")) {
+			System.out.println("Enter fractions");
+			string = enter.nextLine();
+			String answer = produceAnswer(string);
+			System.out.println(answer);
+			if (string.contentEquals("quit")) {
+				System.out.println("Bye");
 			}
 		}
 	}
@@ -41,19 +40,22 @@ public class FracCalc {
 	 */
 	public static String produceAnswer(String input) { 
 		// TODO: Implement this function to produce the solution to the input
-		String[] parts = new String[2];
-		parts[0] = input.substring(0, 4);
-		if (input == "+") {
-			parts[1] = "+";
-		} else if (input == "-") {
-			parts[1] = "-";
-		} else if (input == "*") {
-			parts[1] = "*";
-		} else if (input == "/") {
-			parts[1] = "/";
+		String[] split = input.split("\\s+");
+		if (split.length == 13 || split.length == 11) {
+			String whole = split[2].substring(0, 1);
+			String operator = split[2].substring(1, 2);
+			String numerator = split[2].substring(2, 3);
+			String denominator = split[2].substring(4, 5);
+			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
+			return split[2];
+		} else {
+			String whole = split[2].substring(0, 1);
+			String operator = split[2].substring(1, 2);
+			String numerator = split[2].substring(2, 3);
+			String denominator = split[2].substring(3, 4);
+			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
+			return split[2];
 		}
-		parts[2] = input.substring(8, 12);
-		return parts[2];
 	}
 
 	// TODO: Fill in the space below with any helper methods that you think you will
