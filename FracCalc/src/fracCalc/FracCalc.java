@@ -41,22 +41,29 @@ public class FracCalc {
 	public static String produceAnswer(String input) { 
 		// TODO: Implement this function to produce the solution to the input
 		String[] split = input.split("\\s+");
-		if (split.length == 13 || split.length == 11) {
+		if (split.length == 13) {
 			String whole = split[2].substring(0, 1);
 			String operator = split[2].substring(1, 2);
 			String numerator = split[2].substring(2, 3);
 			String denominator = split[2].substring(4, 5);
 			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
 			return split[2];
-		} else {
+		} else if (split.length == 11){
 			String whole = split[2].substring(0, 1);
 			String operator = split[2].substring(1, 2);
 			String numerator = split[2].substring(2, 3);
-			String denominator = split[2].substring(3, 4);
+			String denominator = split[2].substring(4, 6);
 			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
+			return split[2];
+		}else if (split.length == 11) {
+			String numerator = split[2].substring(0, 2);
+			String operator = split[2].substring(2, 3);
+			String denominator = split[2].substring(4, 5);
+			System.out.println("numerator:" + numerator + " denominator:" + denominator);
 			return split[2];
 		}
 	}
+	//Can run 10 length, 13 length, cannot run when second fraction is whole/has no whole number attached to fraction
 
 	// TODO: Fill in the space below with any helper methods that you think you will
 	// need
