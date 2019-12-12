@@ -43,23 +43,20 @@ public class FracCalc {
 		String[] split = input.split("\\s+");
 		if (split.length == 13) {
 			String whole = split[2].substring(0, 1);
-			String operator = split[2].substring(1, 2);
+			String operator = split[2].substring(3, 4);
 			String numerator = split[2].substring(2, 3);
 			String denominator = split[2].substring(4, 5);
 			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
 			return split[2];
-		} else if (split.length == 11){
+		} else {
+			String frac = split[2];
+			String[] second = new String[5];
+			String[] second
 			String whole = split[2].substring(0, 1);
 			String operator = split[2].substring(1, 2);
 			String numerator = split[2].substring(2, 3);
 			String denominator = split[2].substring(4, 6);
 			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
-			return split[2];
-		}else if (split.length == 11) {
-			String numerator = split[2].substring(0, 2);
-			String operator = split[2].substring(2, 3);
-			String denominator = split[2].substring(4, 5);
-			System.out.println("numerator:" + numerator + " denominator:" + denominator);
 			return split[2];
 		}
 	}
