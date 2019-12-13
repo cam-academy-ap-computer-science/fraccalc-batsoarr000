@@ -41,24 +41,26 @@ public class FracCalc {
 	public static String produceAnswer(String input) { 
 		// TODO: Implement this function to produce the solution to the input
 		String[] split = input.split("\\s+");
-		if (split.length == 13) {
-			String whole = split[2].substring(0, 1);
-			String operator = split[2].substring(3, 4);
-			String numerator = split[2].substring(2, 3);
-			String denominator = split[2].substring(4, 5);
+		String frac = split[2];
+		if (frac.indexOf("_") == -1) {
+			String whole = "-1";
+			String numerator = split[2].substring(0, frac.indexOf("/"));
+			String denominator = split[2].substring(frac.indexOf("/") + 1, frac.length());
 			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
-			return split[2];
+		} else if (frac.indexOf("/") != -1 && frac.indexOf("_") != -1) {
+			String whole = split[2].substring(0, frac.indexOf("_"));
+			String numerator = split[2].substring(frac.indexOf("_") + 1, frac.indexOf("/"));
+			String denominator = split[2].substring(frac.indexOf("/") + 1, frac.length());
+			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);	
+		} else if (frac.indexOf("/") == -1 && frac.indexOf("_") == -1) {
+			String whole = split[2].substring(0, frac.length());
+			String numerator = "0";
+			String denominator = "0";
+			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
 		} else {
-			String frac = split[2];
-			String[] second = new String[5];
-			String[] second
-			String whole = split[2].substring(0, 1);
-			String operator = split[2].substring(1, 2);
-			String numerator = split[2].substring(2, 3);
-			String denominator = split[2].substring(4, 6);
-			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
-			return split[2];
+			System.out.println("whole:-1 numerator:-1 denominator:-1");	
 		}
+		return split[2];
 	}
 	//Can run 10 length, 13 length, cannot run when second fraction is whole/has no whole number attached to fraction
 
