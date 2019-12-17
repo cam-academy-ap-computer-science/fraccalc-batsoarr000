@@ -20,8 +20,8 @@ public class FracCalc {
 		while (!string.contentEquals("quit")) {
 			System.out.println("Enter fractions");
 			string = enter.nextLine();
-			String answer = produceAnswer(string);
-			System.out.println(answer);
+			String input = produceAnswer(string);
+			System.out.println(input);
 			if (string.contentEquals("quit")) {
 				System.out.println("Bye");
 			}
@@ -42,25 +42,28 @@ public class FracCalc {
 		// TODO: Implement this function to produce the solution to the input
 		String[] split = input.split("\\s+");
 		String frac = split[2];
-		if (frac.indexOf("_") == -1) {
-			String whole = "-1";
+		if (frac.indexOf("_") == -1 ) {
+			String whole = "0";
 			String numerator = split[2].substring(0, frac.indexOf("/"));
 			String denominator = split[2].substring(frac.indexOf("/") + 1, frac.length());
-			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
+			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+			return answer;
 		} else if (frac.indexOf("/") != -1 && frac.indexOf("_") != -1) {
 			String whole = split[2].substring(0, frac.indexOf("_"));
 			String numerator = split[2].substring(frac.indexOf("_") + 1, frac.indexOf("/"));
 			String denominator = split[2].substring(frac.indexOf("/") + 1, frac.length());
-			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);	
+			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+			return answer;
 		} else if (frac.indexOf("/") == -1 && frac.indexOf("_") == -1) {
 			String whole = split[2].substring(0, frac.length());
 			String numerator = "0";
-			String denominator = "0";
-			System.out.println("whole:" + whole + " numerator:" + numerator + " denominator:" + denominator);
+			String denominator = "1";
+			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+			return answer;
 		} else {
-			System.out.println("whole:-1 numerator:-1 denominator:-1");	
+			String answer = "whole:-1 numerator:-1 denominator:-1";
+			return answer;
 		}
-		return split[2];
 	}
 	//Can run 10 length, 13 length, cannot run when second fraction is whole/has no whole number attached to fraction
 
