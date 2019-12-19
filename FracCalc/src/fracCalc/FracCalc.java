@@ -4,11 +4,11 @@ import java.util.*;
 
 public class FracCalc {
 	/*
-	 * Create code that sets strings that the user assigns, ask 'calculate fraction
+	 * Create code that sets strings that the user assigns, ask 'calculate fraconetion
 	 * or quit' run string through produceanswer method
 	 * 
-	 * produceanswer breaks up string into three parts, first fraction, operator,
-	 * second fraction adds and returns ther answer
+	 * produceanswer breaks up string into three parts, first fraconetion, operator,
+	 * second fraconetion adds and returns ther answer
 	 * 
 	 * main continues to ask for string until user types quit
 	 */
@@ -20,8 +20,10 @@ public class FracCalc {
 		while (!string.contentEquals("quit")) {
 			System.out.println("Enter fractions");
 			string = enter.nextLine();
-			String input = produceAnswer(string);
-			System.out.println(input);
+			String first = produceAnswer(string);
+			System.out.println(first);
+			String second = produceAnswertwo(string);
+			Stirng finish = findanswer(first, second);
 			if (string.contentEquals("quit")) {
 				System.out.println("Bye");
 			}
@@ -41,23 +43,23 @@ public class FracCalc {
 	public static String produceAnswer(String input) { 
 		// TODO: Implement this function to produce the solution to the input
 		String[] split = input.split("\\s+");
-		String frac = split[2];
-		if (frac.indexOf("/") == -1) {
-			String whole = split[2].substring(0, frac.length());
+		String fracone = split[2];
+		if (fracone.indexOf("/") == -1) {
+			String whole = fracone.substring(0, fracone.length());
 			String numerator = "0";
 			String denominator = "1";
 			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
 			return answer;
-		} else if (frac.indexOf("_") == -1 ) {
+		} else if (fracone.indexOf("_") == -1 ) {
 			String whole = "0";
-			String numerator = split[2].substring(0, frac.indexOf("/"));
-			String denominator = split[2].substring(frac.indexOf("/") + 1, frac.length());
+			String numerator = fracone.substring(0, fracone.indexOf("/"));
+			String denominator = fracone.substring(fracone.indexOf("/") + 1, fracone.length());
 			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
 			return answer;
-		} else if (frac.indexOf("/") != -1 && frac.indexOf("_") != -1) {
-			String whole = split[2].substring(0, frac.indexOf("_"));
-			String numerator = split[2].substring(frac.indexOf("_") + 1, frac.indexOf("/"));
-			String denominator = split[2].substring(frac.indexOf("/") + 1, frac.length());
+		} else if (fracone.indexOf("/") != -1 && fracone.indexOf("_") != -1) {
+			String whole = fracone.substring(0, fracone.indexOf("_"));
+			String numerator = fracone.substring(fracone.indexOf("_") + 1, fracone.indexOf("/"));
+			String denominator = fracone.substring(fracone.indexOf("/") + 1, fracone.length());
 			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
 			return answer;
 		} else {
@@ -65,8 +67,36 @@ public class FracCalc {
 			return answer;
 		}
 	}
-	//Can run 10 length, 13 length, cannot run when second fraction is whole/has no whole number attached to fraction
-
+	public static String produceAnswertwo(String input) { 
+		// TODO: Implement this function to produce the solution to the input
+		String[] split = input.split("\\s+");
+		String fracone = split[1];
+		if (fracone.indexOf("/") == -1) {
+			String whole = fracone.substring(0, fracone.length());
+			String numerator = "0";
+			String denominator = "1";
+			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+			return answer;
+		} else if (fracone.indexOf("_") == -1 ) {
+			String whole = "0";
+			String numerator = fracone.substring(0, fracone.indexOf("/"));
+			String denominator = fracone.substring(fracone.indexOf("/") + 1, fracone.length());
+			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+			return answer;
+		} else if (fracone.indexOf("/") != -1 && fracone.indexOf("_") != -1) {
+			String whole = fracone.substring(0, fracone.indexOf("_"));
+			String numerator = fracone.substring(fracone.indexOf("_") + 1, fracone.indexOf("/"));
+			String denominator = fracone.substring(fracone.indexOf("/") + 1, fracone.length());
+			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+			return answer;
+		} else {
+			String answer = "whole:-1 numerator:-1 denominator:-1";
+			return answer;
+		}
+	}
+	public static string findanswer(String first, String second) {
+		String operator = split[1];
+	}
 	// TODO: Fill in the space below with any helper methods that you think you will
 	// need
 
