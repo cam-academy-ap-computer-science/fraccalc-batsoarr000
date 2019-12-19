@@ -42,7 +42,13 @@ public class FracCalc {
 		// TODO: Implement this function to produce the solution to the input
 		String[] split = input.split("\\s+");
 		String frac = split[2];
-		if (frac.indexOf("_") == -1 ) {
+		if (frac.indexOf("/") == -1) {
+			String whole = split[2].substring(0, frac.length());
+			String numerator = "0";
+			String denominator = "1";
+			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+			return answer;
+		} else if (frac.indexOf("_") == -1 ) {
 			String whole = "0";
 			String numerator = split[2].substring(0, frac.indexOf("/"));
 			String denominator = split[2].substring(frac.indexOf("/") + 1, frac.length());
@@ -52,12 +58,6 @@ public class FracCalc {
 			String whole = split[2].substring(0, frac.indexOf("_"));
 			String numerator = split[2].substring(frac.indexOf("_") + 1, frac.indexOf("/"));
 			String denominator = split[2].substring(frac.indexOf("/") + 1, frac.length());
-			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
-			return answer;
-		} else if (frac.indexOf("/") == -1 && frac.indexOf("_") == -1) {
-			String whole = split[2].substring(0, frac.length());
-			String numerator = "0";
-			String denominator = "1";
 			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
 			return answer;
 		} else {
