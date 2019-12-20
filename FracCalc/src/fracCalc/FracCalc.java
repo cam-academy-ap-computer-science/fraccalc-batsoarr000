@@ -19,10 +19,14 @@ public class FracCalc {
 		Scanner enter = new Scanner(System.in);
 		while (!string.contentEquals("quit")) {
 			System.out.println("Enter fractions");
-			string = enter.nextLine();
-			String first = produceAnswer(string);
-			String finish = findanswer(first, produceAnswertwo(string), proAns(string));
-			System.out.println(finish);
+			String input = enter.nextLine();
+			String[] split = input.split("\\s+");
+			String fra1 = split[2];
+			String first = produceAnswer(fra1);
+			System.out.println(first);
+			String fra2 = split[0];
+			String second = produceAnswer(fra2);
+			System.out.println(finish(first, second, split[1]));
 			if (string.contentEquals("quit")) {
 				System.out.println("Bye");
 			}
@@ -39,106 +43,58 @@ public class FracCalc {
 	 * The function should return the result of the fraction after it has been
 	 * calculated e.g. return ==> "1_1/4"
 	 */
-	public static String produceAnswer(String input) { 
+	public static String produceAnswer(String fra1) { 
 		// TODO: Implement this function to produce the solution to the input
-		String[] split = input.split("\\s+");
-		String fracone = split[2];
-		if (fracone.indexOf("/") == -1) {
-			String whole = fracone.substring(0, fracone.length());
-			String numerator = "0";
-			String denominator = "1";
-			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+		if (fra1.indexOf("/") == -1) {
+			String w1= fra1.substring(0, fra1.length());
+			String n1= "0";
+			String d1= "1";
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 + " ";
 			return answer;
-		} else if (fracone.indexOf("_") == -1 ) {
-			String whole = "0";
-			String numerator = fracone.substring(0, fracone.indexOf("/"));
-			String denominator = fracone.substring(fracone.indexOf("/") + 1, fracone.length());
-			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+		} else if (fra1.indexOf("_") == -1 ) {
+			String w1= "0";
+			String n1= fra1.substring(0, fra1.indexOf("/"));
+			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 + " ";
 			return answer;
-		} else if (fracone.indexOf("/") != -1 && fracone.indexOf("_") != -1) {
-			String whole = fracone.substring(0, fracone.indexOf("_"));
-			String numerator = fracone.substring(fracone.indexOf("_") + 1, fracone.indexOf("/"));
-			String denominator = fracone.substring(fracone.indexOf("/") + 1, fracone.length());
-			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
+		} else if (fra1.indexOf("/") != -1 && fra1.indexOf("_") != -1) {
+			String w1 = fra1.substring(0, fra1.indexOf("_"));
+			String n1= fra1.substring(fra1.indexOf("_") + 1, fra1.indexOf("/"));
+			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 + " ";
 			return answer;
 		} else {
-			String answer = "whole:-1 numerator:-1 denominator:-1";
+			String answer = "whole:-1 numerator:-1 denominator:-1 ";
 			return answer;
 		}
 	}
-	public static String produceAnswertwo(String input) { 
-		// TODO: Implement this function to produce the solution to the input
+	public static String finish(String input, String fra2, String oper) { 
 		String[] split = input.split("\\s+");
-		String fracone = split[0];
-		if (fracone.indexOf("/") == -1) {
-			String whole = fracone.substring(0, fracone.length());
-			String numerator = "0";
-			String denominator = "1";
-			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
-			return answer;
-		} else if (fracone.indexOf("_") == -1 ) {
-			String whole = "0";
-			String numerator = fracone.substring(0, fracone.indexOf("/"));
-			String denominator = fracone.substring(fracone.indexOf("/") + 1, fracone.length());
-			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
-			return answer;
-		} else if (fracone.indexOf("/") != -1 && fracone.indexOf("_") != -1) {
-			String whole = fracone.substring(0, fracone.indexOf("_"));
-			String numerator = fracone.substring(fracone.indexOf("_") + 1, fracone.indexOf("/"));
-			String denominator = fracone.substring(fracone.indexOf("/") + 1, fracone.length());
-			String answer = "whole:" + whole + " numerator:" + numerator + " denominator:" + denominator;
-			return answer;
-		} else {
-			String answer = "whole:-1 numerator:-1 denominator:-1";
-			return answer;
-		}
-	}
-	public static String proAns(String input) {
-		String[] split = input.split("\\s+");
-		String operator = split[1];
-		return operator;
-	}
-	public static String findanswer(String first, String second, String operator) {
-		int wfirst = Integer.parseInt(first.substring(first.indexOf("whole:"), first.indexOf("numberator:")) );
-		int nfirst = Integer.parseInt(first.substring(first.indexOf(":"), first.indexOf("d") ));
-		int dfirst = Integer.parseInt(first.substring(first.indexOf("r"), first.length() ));
-		int wsecond = Integer.parseInt(second.substring(second.indexOf(":"), second.indexOf("n") ));
-		int nsecond = Integer.parseInt(second.substring(second.indexOf(":"), second.indexOf("d") ));
-		int dsecond = Integer.parseInt(second.substring(second.indexOf("r"), second.length() ));
-		if (operator.indexOf("+") != -1) {
-			String end = "";
-			int wfinal = wfirst + wsecond;
-			int nfinal = nfirst + nsecond;
-			int dfinal = dfirst + dsecond;
-			end = wfinal + "_" + nfinal + "/" + dfinal;
-			return end;
-		} else if (operator.indexOf("-") != -1) {
-			String end = "";
-			int wfinal = wfirst - wsecond;
-			int nfinal = nfirst - nsecond;
-			int dfinal = dfirst - dsecond;
-			end = wfinal + "_" + nfinal + "/" + dfinal;
-			return end;
-		} else if (operator.indexOf("*") != -1) {
-			String end = "";
-			int wfinal = wfirst * wsecond;
-			int nfinal = nfirst * nsecond;
-			int dfinal = dfirst * dsecond;
-			end = wfinal + "_" + nfinal + "/" + dfinal;
-			return end;
-		} else if (operator.indexOf("/") != -1) {
-			String end = "";
-			int wfinal = wfirst / wsecond;
-			int nfinal = nfirst * dsecond;
-			int dfinal = dfirst * nsecond;
-			end = wfinal + "_" + nfinal + "/" + dfinal;
-			return end;
-		} else {
-			String end = "no";
-			return end;
-		}
-	}
-	// TODO: Fill in the space below with any helper methods that you think you will
-	// need
+		String hole = split[0].substring(split[0].indexOf(":") + 1, split[0].length());
+		String numer = split[1].substring(split[1].indexOf(":") + 1, split[1].length());
+		String denom = split[2].substring(split[2].indexOf(":") + 1, split[2].length());
+		String[] sec = fra2.split("\\s+");
+		String hole2 = sec[0].substring(sec[0].indexOf(":") + 1, sec[0].length());
+		String numer2 = sec[1].substring(sec[1].indexOf(":") + 1, sec[1].length());
+		String denom2 = sec[2].substring(sec[2].indexOf(":") + 1, sec[2].length());
 
+		
+
+		if (oper.contentEquals("+")) {
+
+			return FINAL;
+		} else if (oper.contentEquals("-")) {
+
+			return FINAL;
+		} else if (oper.contentEquals("*")) {
+
+			return FINAL;
+		} else if (oper.contentEquals("/")) {
+
+			return FINAL;
+		}
+
+	}
 }
+// TODO: Fill in the space below with any helper methods that you think you will
+// need
