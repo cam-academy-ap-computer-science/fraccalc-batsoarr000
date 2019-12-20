@@ -4,11 +4,11 @@ import java.util.*;
 
 public class FracCalc {
 	/*
-	 * Create code that sets strings that the user assigns, ask 'calculate fraconetion
-	 * or quit' run string through produceanswer method
+	 * Create code that sets strings that the user assigns, ask 'calculate fraction
+	 * or quit' run string through produce answer method
 	 * 
-	 * produceanswer breaks up string into three parts, first fraconetion, operator,
-	 * second fraconetion adds and returns ther answer
+	 * produce answer breaks up string into three parts, first fraction, operator,
+	 * second fraction adds and returns there answer
 	 * 
 	 * main continues to ask for string until user types quit
 	 */
@@ -21,9 +21,8 @@ public class FracCalc {
 			System.out.println("Enter fractions");
 			string = enter.nextLine();
 			String first = produceAnswer(string);
-			System.out.println(first);
-			String second = produceAnswertwo(string);
-			Stirng finish = findanswer(first, second);
+			String finish = findanswer(first, produceAnswertwo(string), proAns(string));
+			System.out.println(finish);
 			if (string.contentEquals("quit")) {
 				System.out.println("Bye");
 			}
@@ -70,7 +69,7 @@ public class FracCalc {
 	public static String produceAnswertwo(String input) { 
 		// TODO: Implement this function to produce the solution to the input
 		String[] split = input.split("\\s+");
-		String fracone = split[1];
+		String fracone = split[0];
 		if (fracone.indexOf("/") == -1) {
 			String whole = fracone.substring(0, fracone.length());
 			String numerator = "0";
@@ -94,8 +93,50 @@ public class FracCalc {
 			return answer;
 		}
 	}
-	public static string findanswer(String first, String second) {
+	public static String proAns(String input) {
+		String[] split = input.split("\\s+");
 		String operator = split[1];
+		return operator;
+	}
+	public static String findanswer(String first, String second, String operator) {
+		int wfirst = Integer.parseInt(first.substring(first.indexOf("whole:"), first.indexOf("numberator:")) );
+		int nfirst = Integer.parseInt(first.substring(first.indexOf(":"), first.indexOf("d") ));
+		int dfirst = Integer.parseInt(first.substring(first.indexOf("r"), first.length() ));
+		int wsecond = Integer.parseInt(second.substring(second.indexOf(":"), second.indexOf("n") ));
+		int nsecond = Integer.parseInt(second.substring(second.indexOf(":"), second.indexOf("d") ));
+		int dsecond = Integer.parseInt(second.substring(second.indexOf("r"), second.length() ));
+		if (operator.indexOf("+") != -1) {
+			String end = "";
+			int wfinal = wfirst + wsecond;
+			int nfinal = nfirst + nsecond;
+			int dfinal = dfirst + dsecond;
+			end = wfinal + "_" + nfinal + "/" + dfinal;
+			return end;
+		} else if (operator.indexOf("-") != -1) {
+			String end = "";
+			int wfinal = wfirst - wsecond;
+			int nfinal = nfirst - nsecond;
+			int dfinal = dfirst - dsecond;
+			end = wfinal + "_" + nfinal + "/" + dfinal;
+			return end;
+		} else if (operator.indexOf("*") != -1) {
+			String end = "";
+			int wfinal = wfirst * wsecond;
+			int nfinal = nfirst * nsecond;
+			int dfinal = dfirst * dsecond;
+			end = wfinal + "_" + nfinal + "/" + dfinal;
+			return end;
+		} else if (operator.indexOf("/") != -1) {
+			String end = "";
+			int wfinal = wfirst / wsecond;
+			int nfinal = nfirst * dsecond;
+			int dfinal = dfirst * nsecond;
+			end = wfinal + "_" + nfinal + "/" + dfinal;
+			return end;
+		} else {
+			String end = "no";
+			return end;
+		}
 	}
 	// TODO: Fill in the space below with any helper methods that you think you will
 	// need
