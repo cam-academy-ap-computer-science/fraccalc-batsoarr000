@@ -15,6 +15,7 @@ public class FracCalc {
 
 	public static void main(String[] args) {
 		// TODO: Read the input from the user and call produceAnswer with an equation
+		//scanner to check input as wel as main code to fetch method
 		String string = "";
 		Scanner enter = new Scanner(System.in);
 		while (!string.contentEquals("quit")) {
@@ -45,6 +46,7 @@ public class FracCalc {
 	 */
 	public static String produceAnswer(String fra1) { 
 		// TODO: Implement this function to produce the solution to the input
+		//splits up fraction 2
 		if (fra1.indexOf("/") == -1) {
 			String w1= fra1.substring(0, fra1.length());
 			String n1= "0";
@@ -68,6 +70,7 @@ public class FracCalc {
 			return answer;
 		}
 	}
+	//splits up fractions again
 	public static String finish(String input, String fra2, String oper) { 
 		String[] split = input.split("\\s+");
 		String hole = split[0].substring(split[0].indexOf(":") + 1, split[0].length());
@@ -77,24 +80,35 @@ public class FracCalc {
 		String hole2 = sec[0].substring(sec[0].indexOf(":") + 1, sec[0].length());
 		String numer2 = sec[1].substring(sec[1].indexOf(":") + 1, sec[1].length());
 		String denom2 = sec[2].substring(sec[2].indexOf(":") + 1, sec[2].length());
+		String FINAL;
+		//frac 1
+		int hole_int = Integer.parseInt(hole);
+		int numer_int = Integer.parseInt(numer);
+		int denom_int = Integer.parseInt(denom);
+		//frac 2
+		int hole_int_two = Integer.parseInt(hole2);
+		int numer_int_two = Integer.parseInt(numer2);
+		int denom_int_two = Integer.parseInt(denom2);
 
-		
-
-		if (oper.contentEquals("+")) {
+		//calculations
+		if (oper.contentEquals("+") == true) {
+			int changed_denom = gcd(denom_int,denom_int_two);
+			return FINAL;
+		} else if (oper.contentEquals("-") == true) {
 
 			return FINAL;
-		} else if (oper.contentEquals("-")) {
+		} else if (oper.contentEquals("*") == true) {
 
 			return FINAL;
-		} else if (oper.contentEquals("*")) {
+		} else if (oper.contentEquals("/") == true) {
 
 			return FINAL;
-		} else if (oper.contentEquals("/")) {
-
-			return FINAL;
+		} else {
+			return null;
 		}
 
 	}
+	
 }
 // TODO: Fill in the space below with any helper methods that you think you will
 // need
