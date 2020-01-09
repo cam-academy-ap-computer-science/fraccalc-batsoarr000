@@ -24,10 +24,9 @@ public class FracCalc {
 			String[] split = input.split("\\s+");
 			String fra1 = split[2];
 			String first = produceAnswer(fra1);
-			System.out.println(first);
 			String fra2 = split[0];
 			String second = produceAnswer(fra2);
-			System.out.println(finish(first, second, split[1]));
+			System.out.println(first + ", " + second + ", " + finish(first, second, split[1]));
 			if (string.contentEquals("quit")) {
 				System.out.println("Bye");
 			}
@@ -51,22 +50,22 @@ public class FracCalc {
 			String w1= fra1.substring(0, fra1.length());
 			String n1= "0";
 			String d1= "1";
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 + " ";
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1;
 			return answer;
 		} else if (fra1.indexOf("_") == -1 ) {
 			String w1= "0";
 			String n1= fra1.substring(0, fra1.indexOf("/"));
 			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 + " ";
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1;
 			return answer;
 		} else if (fra1.indexOf("/") != -1 && fra1.indexOf("_") != -1) {
 			String w1 = fra1.substring(0, fra1.indexOf("_"));
 			String n1= fra1.substring(fra1.indexOf("_") + 1, fra1.indexOf("/"));
 			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 + " ";
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1;
 			return answer;
 		} else {
-			String answer = "whole:-1 numerator:-1 denominator:-1 ";
+			String answer = "whole:-1 numerator:-1 denominator:-1";
 			return answer;
 		}
 	}
@@ -92,11 +91,20 @@ public class FracCalc {
 
 		//calculations +
 		if (oper.contentEquals("+") == true) {
+			if(denom_int == denom_int_two) {
+				int finalnumer1 = numer_int + numer_int_two;
+				int finalhole1 = hole_int + hole_int_two;
+				int finaldenom1 = denom_int;
+				FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+				return FINAL;
+			}
 			int lcm = lcm(denom_int, denom_int_two);
 			int finalnumer1 = ((((denom_int * hole_int) + numer_int) * lcm) + (((denom_int_two * hole_int_two) + numer_int_two)) * lcm);
-			int finaldenom1 = lcm * denom_int;
+			int finaldenom1 = (lcm * denom_int);
 			int finalhole1 = finalnumer1 / finaldenom1;
-			finalnumer1 = finalnumer1  % finaldenom1;
+			finalnumer1 = finalnumer1 % finaldenom1;
+			finalnumer1 = finalnumer1 / lcm;
+			finaldenom1 = finaldenom1 / lcm;
 			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 			
 			return FINAL;
