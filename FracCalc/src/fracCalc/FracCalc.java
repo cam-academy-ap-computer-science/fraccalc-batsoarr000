@@ -92,15 +92,37 @@ public class FracCalc {
 
 		//calculations
 		if (oper.contentEquals("+") == true) {
-			int changed_denom = gcd(denom_int,denom_int_two);
+			int lcm = lcm(denom_int, denom_int_two);
+			int finalnumer1 = (lcm * numer_int) + (lcm * numer_int_two);
+			int finaldenom1 = lcm + denom_int;
+			int finalhole1 = finalnumer1 / finaldenom1;
+			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
+			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+			
 			return FINAL;
 		} else if (oper.contentEquals("-") == true) {
+			int lcm = lcm(denom_int, denom_int_two);
+			int finalnumer1 = (lcm * numer_int) - (lcm * numer_int_two);
+			int finaldenom1 = lcm * denom_int;
+			int finalhole1 = finalnumer1 / finaldenom1;
+			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
+			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 
 			return FINAL;
 		} else if (oper.contentEquals("*") == true) {
+			int finalnumer1 = ((hole_int * denom_int) + (numer_int)) * ((hole_int_two * denom_int_two) + (numer_int_two));
+			int finaldenom1 = (denom_int * denom_int_two);
+			int finalhole1 = finalnumer1 / finaldenom1;
+			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
+			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 
 			return FINAL;
 		} else if (oper.contentEquals("/") == true) {
+			int finalnumer1 = (hole_int * denom_int) * (denom_int_two);
+			int finaldenom1 = (hole_int_two * denom_int_two) * (denom_int);
+			int finalhole1 = finalnumer1 / finaldenom1;
+			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
+			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 
 			return FINAL;
 		} else {
@@ -108,6 +130,20 @@ public class FracCalc {
 		}
 
 	}
+	//assist coding for greatest common denominator and least common multiple
+	public static int lcm(int a, int b) 
+    { 
+        return (a*b)/gcd(a, b); 
+    }
+	public static int gcd(int a, int b) 
+    { 
+    if (a == 0) {
+        return b;
+    }
+    return gcd(b % a, a);  
+    } 
+     
+    
 	
 }
 // TODO: Fill in the space below with any helper methods that you think you will
