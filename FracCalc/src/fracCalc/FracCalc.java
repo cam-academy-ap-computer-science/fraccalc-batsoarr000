@@ -81,42 +81,45 @@ public class FracCalc {
 		String numer2 = sec[1].substring(sec[1].indexOf(":") + 1, sec[1].length());
 		String denom2 = sec[2].substring(sec[2].indexOf(":") + 1, sec[2].length());
 		String FINAL;
-		//frac 1
+		//fraction 1
 		int hole_int = Integer.parseInt(hole);
 		int numer_int = Integer.parseInt(numer);
 		int denom_int = Integer.parseInt(denom);
-		//frac 2
+		//fraction 2
 		int hole_int_two = Integer.parseInt(hole2);
 		int numer_int_two = Integer.parseInt(numer2);
 		int denom_int_two = Integer.parseInt(denom2);
 
-		//calculations
+		//calculations +
 		if (oper.contentEquals("+") == true) {
 			int lcm = lcm(denom_int, denom_int_two);
-			int finalnumer1 = (lcm * numer_int) + (lcm * numer_int_two);
-			int finaldenom1 = lcm + denom_int;
+			int finalnumer1 = ((((denom_int * hole_int) + numer_int) * lcm) + (((denom_int_two * hole_int_two) + numer_int_two)) * lcm);
+			int finaldenom1 = lcm * denom_int;
 			int finalhole1 = finalnumer1 / finaldenom1;
-			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
+			finalnumer1 = finalnumer1  % finaldenom1;
 			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 			
 			return FINAL;
+		//calculation -
 		} else if (oper.contentEquals("-") == true) {
 			int lcm = lcm(denom_int, denom_int_two);
-			int finalnumer1 = (lcm * numer_int) - (lcm * numer_int_two);
+			int finalnumer1 = ((((denom_int * hole_int) + numer_int) * lcm) - (((denom_int_two * hole_int_two) + numer_int_two)) * lcm);
 			int finaldenom1 = lcm * denom_int;
 			int finalhole1 = finalnumer1 / finaldenom1;
-			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
+			finalnumer1 = finalnumer1 % finaldenom1;
 			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 
 			return FINAL;
+		//calculation *
 		} else if (oper.contentEquals("*") == true) {
 			int finalnumer1 = ((hole_int * denom_int) + (numer_int)) * ((hole_int_two * denom_int_two) + (numer_int_two));
 			int finaldenom1 = (denom_int * denom_int_two);
 			int finalhole1 = finalnumer1 / finaldenom1;
-			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
+			finalnumer1 = finalnumer1 % finaldenom1;
 			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 
 			return FINAL;
+		//calculation /
 		} else if (oper.contentEquals("/") == true) {
 			int finalnumer1 = (hole_int * denom_int) * (denom_int_two);
 			int finaldenom1 = (hole_int_two * denom_int_two) * (denom_int);
