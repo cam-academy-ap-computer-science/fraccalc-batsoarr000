@@ -21,12 +21,8 @@ public class FracCalc {
 		while (!string.contentEquals("quit")) {
 			System.out.println("Enter fractions");
 			String input = enter.nextLine();
-			String[] split = input.split("\\s+");
-			String fra1 = split[2];
-			String first = getA(fra1);
-			String fra2 = split[0];
-			String second = getA(fra2);
-			System.out.println(first + ", " + second + ", " + produceAnswer(split[1]));
+			String FINAL = produceAnswer(input);
+			System.out.println(FINAL);
 			if (string.contentEquals("quit")) {
 				System.out.println("Bye");
 			}
@@ -50,19 +46,19 @@ public class FracCalc {
 			String w1= fra1.substring(0, fra1.length());
 			String n1= "0";
 			String d1= "1";
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1;
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
 			return answer;
 		} else if (fra1.indexOf("_") == -1 ) {
 			String w1= "0";
 			String n1= fra1.substring(0, fra1.indexOf("/"));
 			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1;
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
 			return answer;
 		} else if (fra1.indexOf("/") != -1 && fra1.indexOf("_") != -1) {
 			String w1 = fra1.substring(0, fra1.indexOf("_"));
 			String n1= fra1.substring(fra1.indexOf("_") + 1, fra1.indexOf("/"));
 			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1;
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
 			return answer;
 		} else {
 			String answer = "whole:-1 numerator:-1 denominator:-1";
@@ -70,17 +66,19 @@ public class FracCalc {
 		}
 	}
 	//splits up fractions again
-	public static String produceAnswer(String oper) { 
-		String fra1 = split[2];
-		String input = getA(fra1);
-		String fra2 = split[0];
+	public static String produceAnswer(String input) { 
+		String[] next = input.split("\\s+");
+		String fra1 = next[2];
+		String first = getA(fra1);
+		String fra2 = next[0];
 		String second = getA(fra2);
-		String[] split = input.split("\\s+");
+		String oper = next[1];
 		
+		String[] split = first.split("\\s+");
 		String hole = split[0].substring(split[0].indexOf(":") + 1, split[0].length());
 		String numer = split[1].substring(split[1].indexOf(":") + 1, split[1].length());
 		String denom = split[2].substring(split[2].indexOf(":") + 1, split[2].length());
-		String[] sec = fra2.split("\\s+");
+		String[] sec = second.split("\\s+");
 		String hole2 = sec[0].substring(sec[0].indexOf(":") + 1, sec[0].length());
 		String numer2 = sec[1].substring(sec[1].indexOf(":") + 1, sec[1].length());
 		String denom2 = sec[2].substring(sec[2].indexOf(":") + 1, sec[2].length());
@@ -101,6 +99,7 @@ public class FracCalc {
 				int finalhole1 = hole_int + hole_int_two;
 				int finaldenom1 = denom_int;
 				FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+				
 				return FINAL;
 			}
 			int lcm = lcm(denom_int, denom_int_two);
@@ -134,10 +133,18 @@ public class FracCalc {
 			return FINAL;
 		//calculation /
 		} else if (oper.contentEquals("/") == true) {
-			int finalnumer1 = (hole_int * denom_int) * (denom_int_two);
-			int finaldenom1 = (hole_int_two * denom_int_two) * (denom_int);
-			int finalhole1 = finalnumer1 / finaldenom1;
+			if (numer_int == 0 || numer_int_two == 0) {
+				return FINAL = "0";
+				}
+			int finalnumer1 = denom_int * numer_int_two;
+			int finaldenom1 = numer_int * denom_int_two;
+			int finalhole1 = hole_int / hole_int_two;
 			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
+			if (finalnumer1 == 0) {
+				FINAL = Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+
+				return FINAL;
+			}
 			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 
 			return FINAL;
