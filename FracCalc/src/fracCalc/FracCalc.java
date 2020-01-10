@@ -26,7 +26,7 @@ public class FracCalc {
 			String first = getA(fra1);
 			String fra2 = split[0];
 			String second = getA(fra2);
-			System.out.println(first + ", " + second + ", " + produceAnswer(first, second, split[1]));
+			System.out.println(first + ", " + second + ", " + produceAnswer(split[1]));
 			if (string.contentEquals("quit")) {
 				System.out.println("Bye");
 			}
@@ -70,8 +70,13 @@ public class FracCalc {
 		}
 	}
 	//splits up fractions again
-	public static String produceAnswer(String input, String fra2, String oper) { 
+	public static String produceAnswer(String oper) { 
+		String fra1 = split[2];
+		String input = getA(fra1);
+		String fra2 = split[0];
+		String second = getA(fra2);
 		String[] split = input.split("\\s+");
+		
 		String hole = split[0].substring(split[0].indexOf(":") + 1, split[0].length());
 		String numer = split[1].substring(split[1].indexOf(":") + 1, split[1].length());
 		String denom = split[2].substring(split[2].indexOf(":") + 1, split[2].length());
