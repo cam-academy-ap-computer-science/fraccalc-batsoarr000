@@ -23,10 +23,10 @@ public class FracCalc {
 			String input = enter.nextLine();
 			String[] split = input.split("\\s+");
 			String fra1 = split[2];
-			String first = produceAnswer(fra1);
+			String first = getA(fra1);
 			String fra2 = split[0];
-			String second = produceAnswer(fra2);
-			System.out.println(first + ", " + second + ", " + finish(first, second, split[1]));
+			String second = getA(fra2);
+			System.out.println(first + ", " + second + ", " + produceAnswer(first, second, split[1]));
 			if (string.contentEquals("quit")) {
 				System.out.println("Bye");
 			}
@@ -43,7 +43,7 @@ public class FracCalc {
 	 * The function should return the result of the fraction after it has been
 	 * calculated e.g. return ==> "1_1/4"
 	 */
-	public static String produceAnswer(String fra1) { 
+	public static String getA(String fra1) { 
 		// TODO: Implement this function to produce the solution to the input
 		//splits up fraction 2
 		if (fra1.indexOf("/") == -1) {
@@ -70,7 +70,7 @@ public class FracCalc {
 		}
 	}
 	//splits up fractions again
-	public static String finish(String input, String fra2, String oper) { 
+	public static String produceAnswer(String input, String fra2, String oper) { 
 		String[] split = input.split("\\s+");
 		String hole = split[0].substring(split[0].indexOf(":") + 1, split[0].length());
 		String numer = split[1].substring(split[1].indexOf(":") + 1, split[1].length());
