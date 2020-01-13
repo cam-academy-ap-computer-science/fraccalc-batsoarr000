@@ -91,6 +91,24 @@ public class FracCalc {
 		int hole_int_two = Integer.parseInt(hole2);
 		int numer_int_two = Integer.parseInt(numer2);
 		int denom_int_two = Integer.parseInt(denom2);
+		
+		if (hole_int_two / Math.abs(hole_int_two) == -1 || hole_int / Math.abs(hole_int) == -1) {
+			if (oper.contentEquals("+")) {
+				if(denom_int == denom_int_two) {
+					int finalnumer1 = numer_int + numer_int_two;
+					int finalhole1 = hole_int + hole_int_two;
+					int finaldenom1 = denom_int;
+					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+					
+					return FINAL;
+			} else if (oper.contentEquals("-")) {
+				
+			} else if (oper.contentEquals("*")) {
+				
+			} else (oper.contentEquals("/") ) {
+				
+			}
+		}
 
 		//calculations +
 		if (oper.contentEquals("+") == true) {
@@ -119,6 +137,7 @@ public class FracCalc {
 			int finaldenom1 = lcm * denom_int;
 			int finalhole1 = finalnumer1 / finaldenom1;
 			finalnumer1 = finalnumer1 % finaldenom1;
+			
 			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 
 			return FINAL;
@@ -139,8 +158,7 @@ public class FracCalc {
 			int finalnumer1 = denom_int * numer_int_two;
 			int finaldenom1 = numer_int * denom_int_two;
 			int finalhole1 = hole_int / hole_int_two;
-			finalnumer1 = finalnumer1 - (finalhole1 * finaldenom1);
-			if (finalnumer1 == 0) {
+			if (finalhole1 == 0) {
 				FINAL = Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 
 				return FINAL;
