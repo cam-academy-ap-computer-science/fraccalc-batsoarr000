@@ -95,18 +95,58 @@ public class FracCalc {
 		if (hole_int_two / Math.abs(hole_int_two) == -1 || hole_int / Math.abs(hole_int) == -1) {
 			if (oper.contentEquals("+")) {
 				if(denom_int == denom_int_two) {
+					if(hole_int_two / Math.abs(hole_int_two) == -1) {
+						int finalnumer1 = numer_int - numer_int_two;
+						int finalhole1 = (hole_int * -1) - hole_int_two;
+						int finaldenom1 = denom_int;
+						FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+						
+						return FINAL;
+				}
+					if(hole_int / Math.abs(hole_int) == -1) {
 					int finalnumer1 = numer_int + numer_int_two;
-					int finalhole1 = hole_int + hole_int_two;
+					int finalhole1 = (hole_int * -1) + hole_int_two;
 					int finaldenom1 = denom_int;
 					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
 					
 					return FINAL;
+					}
+				}
+				
 			} else if (oper.contentEquals("-")) {
-				
+				if(denom_int == denom_int_two) {
+					if(hole_int_two / Math.abs(hole_int_two) == -1) {
+						int finalnumer1 = numer_int + numer_int_two;
+						int finalhole1 = (hole_int * -1) + hole_int_two;
+						int finaldenom1 = denom_int;
+						FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+						
+						return FINAL;
+				}
+					if(hole_int / Math.abs(hole_int) == -1) {
+					int finalnumer1 = numer_int + numer_int_two;
+					int finalhole1 = (hole_int * -1) + hole_int_two;
+					int finaldenom1 = denom_int;
+					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+					
+					return FINAL;
+					}
+				}
 			} else if (oper.contentEquals("*")) {
+				if (hole_int / Math.abs(hole_int) == -1) {
+					int finalnumer1 = ((hole_int * denom_int) + (numer_int)) * ((hole_int_two * denom_int_two) + (numer_int_two));
+					int finaldenom1 = (denom_int * denom_int_two);
+					int finalhole1 = finalnumer1 / finaldenom1;
+					finalnumer1 = finalnumer1 % finaldenom1;
+					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+
+					return FINAL;
+				}
 				
-			} else (oper.contentEquals("/") ) {
+			} else if (oper.contentEquals("/") ) {
 				
+			} else {
+				return null;
 			}
 		}
 
