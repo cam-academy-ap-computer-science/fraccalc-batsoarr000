@@ -111,8 +111,7 @@ public class FracCalc {
 					
 					return FINAL;
 					}
-				}
-				
+				} 	
 			} else if (oper.contentEquals("-")) {
 				if(denom_int == denom_int_two) {
 					if(hole_int_two / Math.abs(hole_int_two) == -1) {
@@ -132,9 +131,19 @@ public class FracCalc {
 					return FINAL;
 					}
 				}
+				
 			} else if (oper.contentEquals("*")) {
 				if (hole_int / Math.abs(hole_int) == -1) {
-					int finalnumer1 = ((hole_int * denom_int) + (numer_int)) * ((hole_int_two * denom_int_two) + (numer_int_two));
+					int finalnumer1 = ((hole_int * denom_int) + (-1 * numer_int)) * ((hole_int_two * denom_int_two) + (numer_int_two));
+					int finaldenom1 = (denom_int * denom_int_two);
+					int finalhole1 = finalnumer1 / finaldenom1;
+					finalnumer1 = finalnumer1 % finaldenom1;
+					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+
+					return FINAL;
+				}
+				if (hole_int_two / Math.abs(hole_int_two) == -1) {
+					int finalnumer1 = ((hole_int * denom_int) + (-1 * numer_int)) * ((hole_int_two * denom_int_two) + (-1 * numer_int_two));
 					int finaldenom1 = (denom_int * denom_int_two);
 					int finalhole1 = finalnumer1 / finaldenom1;
 					finalnumer1 = finalnumer1 % finaldenom1;
@@ -144,12 +153,49 @@ public class FracCalc {
 				}
 				
 			} else if (oper.contentEquals("/") ) {
+				if (hole_int / Math.abs(hole_int) == -1) {
+					if (numer_int == 0 || numer_int_two == 0) {
+					return FINAL = "0";
+					}
+				int finalnumer1 = denom_int * numer_int_two;
+				int finaldenom1 = (-1 * numer_int) * denom_int_two;
+				int finalhole1 = (-1 * hole_int) / hole_int_two;
+				if (finalhole1 == 0) {
+					FINAL = Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+
+					return FINAL;
+				}
+				FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+
+				return FINAL;
+				}
+				if (hole_int_two / Math.abs(hole_int_two) == -1) {
+					if (numer_int == 0 || numer_int_two == 0) {
+					return FINAL = "0";
+					}
+				int finalnumer1 = denom_int * (-1 * numer_int_two);
+				int finaldenom1 = numer_int * denom_int_two;
+				int finalhole1 = hole_int / (-1 * hole_int_two);
+				if (finalhole1 == 0) {
+					FINAL = Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+
+					return FINAL;
+				}
+				FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+
+				return FINAL;
+				}
 				
 			} else {
 				return null;
 			}
-		}
 
+			 
+			
+			
+			
+			
+			
 		//calculations +
 		if (oper.contentEquals("+") == true) {
 			if(denom_int == denom_int_two) {
@@ -207,10 +253,12 @@ public class FracCalc {
 
 			return FINAL;
 		} else {
-			return null;
+			String No = "no";
+			return No;
+		}}
+		
 		}
-
-	}
+		
 	//assist coding for greatest common denominator and least common multiple
 	public static int lcm(int a, int b) 
     { 
