@@ -232,8 +232,9 @@ public class FracCalc {
 			FINAL = split[2] + ",    " + other + ",     " + Integer.toString(w1) + "_" + Integer.toString(n1) + "/" + Integer.toString(d1);
 
 			return FINAL;
-			} 
+			}
 	}
+		
 	public static String getA(String fra1) { 
 		// TODO: Implement this function to produce the solution to the input
 		//splits up fraction 2
