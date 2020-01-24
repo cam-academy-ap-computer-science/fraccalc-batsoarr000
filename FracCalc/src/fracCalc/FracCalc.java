@@ -232,6 +232,10 @@ public class FracCalc {
 			FINAL = split[2] + ",    " + other + ",     " + Integer.toString(w1) + "_" + Integer.toString(n1) + "/" + Integer.toString(d1);
 
 			return FINAL;
+			} else {
+				FINAL = "no";
+				return FINAL;
+				
 			}
 	}
 		
