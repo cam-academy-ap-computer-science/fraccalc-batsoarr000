@@ -84,179 +84,94 @@ public class FracCalc {
 		String denom2 = sec[2].substring(sec[2].indexOf(":") + 1, sec[2].length());
 		String FINAL;
 		//fraction 1
-		int hole_int = Integer.parseInt(hole);
-		int numer_int = Integer.parseInt(numer);
-		int denom_int = Integer.parseInt(denom);
+		int w1 = Integer.parseInt(hole);
+		int n1 = Integer.parseInt(numer);
+		int d1 = Integer.parseInt(denom);
 		//fraction 2
-		int hole_int_two = Integer.parseInt(hole2);
-		int numer_int_two = Integer.parseInt(numer2);
-		int denom_int_two = Integer.parseInt(denom2);
+		int w2 = Integer.parseInt(hole2);
+		int n2 = Integer.parseInt(numer2);
+		int d2 = Integer.parseInt(denom2);
 		
-		if (hole_int_two / Math.abs(hole_int_two) == -1 || hole_int / Math.abs(hole_int) == -1) {
-			if (oper.contentEquals("+")) {
-				if(denom_int == denom_int_two) {
-					if(hole_int_two / Math.abs(hole_int_two) == -1) {
-						int finalnumer1 = numer_int - numer_int_two;
-						int finalhole1 = (hole_int * -1) - hole_int_two;
-						int finaldenom1 = denom_int;
-						FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-						
-						return FINAL;
-				}
-					if(hole_int / Math.abs(hole_int) == -1) {
-					int finalnumer1 = numer_int + numer_int_two;
-					int finalhole1 = (hole_int * -1) + hole_int_two;
-					int finaldenom1 = denom_int;
-					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-					
-					return FINAL;
-					}
-				} 	
-			} else if (oper.contentEquals("-")) {
-				if(denom_int == denom_int_two) {
-					if(hole_int_two / Math.abs(hole_int_two) == -1) {
-						int finalnumer1 = numer_int + numer_int_two;
-						int finalhole1 = (hole_int * -1) + hole_int_two;
-						int finaldenom1 = denom_int;
-						FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-						
-						return FINAL;
-				}
-					if(hole_int / Math.abs(hole_int) == -1) {
-					int finalnumer1 = numer_int + numer_int_two;
-					int finalhole1 = (hole_int * -1) + hole_int_two;
-					int finaldenom1 = denom_int;
-					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-					
-					return FINAL;
-					}
-				}
-				
-			} else if (oper.contentEquals("*")) {
-				if (hole_int / Math.abs(hole_int) == -1) {
-					int finalnumer1 = ((hole_int * denom_int) + (-1 * numer_int)) * ((hole_int_two * denom_int_two) + (numer_int_two));
-					int finaldenom1 = (denom_int * denom_int_two);
-					int finalhole1 = finalnumer1 / finaldenom1;
-					finalnumer1 = finalnumer1 % finaldenom1;
-					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-
-					return FINAL;
-				}
-				if (hole_int_two / Math.abs(hole_int_two) == -1) {
-					int finalnumer1 = ((hole_int * denom_int) + (-1 * numer_int)) * ((hole_int_two * denom_int_two) + (-1 * numer_int_two));
-					int finaldenom1 = (denom_int * denom_int_two);
-					int finalhole1 = finalnumer1 / finaldenom1;
-					finalnumer1 = finalnumer1 % finaldenom1;
-					FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-
-					return FINAL;
-				}
-				
-			} else if (oper.contentEquals("/") ) {
-				if (hole_int / Math.abs(hole_int) == -1) {
-					if (numer_int == 0 || numer_int_two == 0) {
-					return FINAL = "0";
-					}
-				int finalnumer1 = denom_int * numer_int_two;
-				int finaldenom1 = (-1 * numer_int) * denom_int_two;
-				int finalhole1 = (-1 * hole_int) / hole_int_two;
-				if (finalhole1 == 0) {
-					FINAL = Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-
-					return FINAL;
-				}
-				FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-
-				return FINAL;
-				}
-				if (hole_int_two / Math.abs(hole_int_two) == -1) {
-					if (numer_int == 0 || numer_int_two == 0) {
-					return FINAL = "0";
-					}
-				int finalnumer1 = denom_int * (-1 * numer_int_two);
-				int finaldenom1 = numer_int * denom_int_two;
-				int finalhole1 = hole_int / (-1 * hole_int_two);
-				if (finalhole1 == 0) {
-					FINAL = Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-
-					return FINAL;
-				}
-				FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
-
-				return FINAL;
-				}
-				
-			} else {
-				return null;
-			}
-
-			 
-			
-			
-			
-			
-			
 		//calculations +
 		if (oper.contentEquals("+") == true) {
-			if(denom_int == denom_int_two) {
-				int finalnumer1 = numer_int + numer_int_two;
-				int finalhole1 = hole_int + hole_int_two;
-				int finaldenom1 = denom_int;
-				FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+			if(d1 == d2) {
+				int fn1 = n1 + n2;
+				int fw1 = w1 + w2;
+				int fd1 = d1;
+				FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
 				
 				return FINAL;
 			}
-			int lcm = lcm(denom_int, denom_int_two);
-			int finalnumer1 = ((((denom_int * hole_int) + numer_int) * lcm) + (((denom_int_two * hole_int_two) + numer_int_two)) * lcm);
-			int finaldenom1 = (lcm * denom_int);
-			int finalhole1 = finalnumer1 / finaldenom1;
-			finalnumer1 = finalnumer1 % finaldenom1;
-			finalnumer1 = finalnumer1 / lcm;
-			finaldenom1 = finaldenom1 / lcm;
-			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+			
+			int lcm = lcm(d1, d2);
+			int fn1 = ((((d1 * w1) + n1) * lcm) + (((d2 * w2) + n2)) * lcm);
+			int fd1 = (lcm * d1);
+			int fw1 = fn1 / fd1;
+			fn1 = fn1 % fd1;
+			fn1 = fn1 / lcm;
+			fd1 = fd1 / lcm;
+			FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
 			
 			return FINAL;
 		//calculation -
 		} else if (oper.contentEquals("-") == true) {
-			int lcm = lcm(denom_int, denom_int_two);
-			int finalnumer1 = ((((denom_int * hole_int) + numer_int) * lcm) - (((denom_int_two * hole_int_two) + numer_int_two)) * lcm);
-			int finaldenom1 = lcm * denom_int;
-			int finalhole1 = finalnumer1 / finaldenom1;
-			finalnumer1 = finalnumer1 % finaldenom1;
+			int lcm = lcm(d1, d2);
+			int fn1 = ((((d1 * w1) + n1) * lcm) - (((d2 * w2) + n2)) * lcm);
+			int fd1 = lcm * d1;
+			int fw1 = fn1 / fd1;
+			fn1 = fn1 % fd1;
 			
-			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+			FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
 
 			return FINAL;
 		//calculation *
 		} else if (oper.contentEquals("*") == true) {
-			int finalnumer1 = ((hole_int * denom_int) + (numer_int)) * ((hole_int_two * denom_int_two) + (numer_int_two));
-			int finaldenom1 = (denom_int * denom_int_two);
-			int finalhole1 = finalnumer1 / finaldenom1;
-			finalnumer1 = finalnumer1 % finaldenom1;
-			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+			if(w1 < 0) {
+				n1 *= -1;
+			}
+			if(w2 < 0) {
+				n2 *= -1;
+			}
+			int frac1 = (w1 * d1) + n1;
+			int frac2 = (w2 * d2) + n2;
+			d1 *= d2;
+			n1 = frac1 * frac2;
+			w1 = n1 / d1;
+			n1 = n1 % d1;
+			if(w1 < 0 && n1 < 0) {
+				n1 *= -1;
+			}
+			if(n1 > d1 || n1 == d1) {
+				while(n1 > d1) {
+					n1 -= d1;
+					w1++;
+				}
+			}
+			
+			}
+			FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
 
 			return FINAL;
 		//calculation /
-		} else if (oper.contentEquals("/") == true) {
-			if (numer_int == 0 || numer_int_two == 0) {
+		} else if (oper.contentEquals(" / ") == true) {
+			if (n1 == 0 || n2 == 0) {
 				return FINAL = "0";
 				}
-			int finalnumer1 = denom_int * numer_int_two;
-			int finaldenom1 = numer_int * denom_int_two;
-			int finalhole1 = hole_int / hole_int_two;
-			if (finalhole1 == 0) {
-				FINAL = Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+			int fn1 = d1 * n2;
+			int fd1 = n1 * d2;
+			int fw1 = w1 / w2;
+			if (fw1 == 0) {
+				FINAL = Integer.toString(fn1) + "/" + Integer.toString(fd1);
 
 				return FINAL;
 			}
-			FINAL = Integer.toString(finalhole1) + "_" + Integer.toString(finalnumer1) + "/" + Integer.toString(finaldenom1);
+			FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
 
 			return FINAL;
 		} else {
 			String No = "no";
 			return No;
-		}}
-		
+		}
 		}
 		
 	//assist coding for greatest common denominator and least common multiple
