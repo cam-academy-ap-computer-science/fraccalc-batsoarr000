@@ -13,6 +13,7 @@ public class FracCalc {
 	 * main continues to ask for string until user types quit
 	 */
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		// TODO: Read the input from the user and call produceAnswer with an equation
 		//scanner to check input as wel as main code to fetch method
@@ -39,32 +40,7 @@ public class FracCalc {
 	 * The function should return the result of the fraction after it has been
 	 * calculated e.g. return ==> "1_1/4"
 	 */
-	public static String getA(String fra1) { 
-		// TODO: Implement this function to produce the solution to the input
-		//splits up fraction 2
-		if (fra1.indexOf("/") == -1) {
-			String w1= fra1.substring(0, fra1.length());
-			String n1= "0";
-			String d1= "1";
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
-			return answer;
-		} else if (fra1.indexOf("_") == -1 ) {
-			String w1= "0";
-			String n1= fra1.substring(0, fra1.indexOf("/"));
-			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
-			return answer;
-		} else if (fra1.indexOf("/") != -1 && fra1.indexOf("_") != -1) {
-			String w1 = fra1.substring(0, fra1.indexOf("_"));
-			String n1= fra1.substring(fra1.indexOf("_") + 1, fra1.indexOf("/"));
-			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
-			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
-			return answer;
-		} else {
-			String answer = "whole:-1 numerator:-1 denominator:-1";
-			return answer;
-		}
-	}
+	
 	//splits up fractions again
 	public static String produceAnswer(String input) { 
 		String[] next = input.split("\\s+");
@@ -78,6 +54,8 @@ public class FracCalc {
 		String hole = split[0].substring(split[0].indexOf(":") + 1, split[0].length());
 		String numer = split[1].substring(split[1].indexOf(":") + 1, split[1].length());
 		String denom = split[2].substring(split[2].indexOf(":") + 1, split[2].length());
+		System.out.print(split[2]);
+		String other = ("whole:" + hole + " numerator:" + numer + " denominator:" + denom);
 		String[] sec = second.split("\\s+");
 		String hole2 = sec[0].substring(sec[0].indexOf(":") + 1, sec[0].length());
 		String numer2 = sec[1].substring(sec[1].indexOf(":") + 1, sec[1].length());
@@ -94,34 +72,84 @@ public class FracCalc {
 		
 		//calculations +
 		if (oper.contentEquals("+") == true) {
-			if(d1 == d2) {
-				int fn1 = n1 + n2;
-				int fw1 = w1 + w2;
-				int fd1 = d1;
-				FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
-				
-				return FINAL;
+			if (w1 < 0) { 
+				n1 *= -1;
 			}
-			
-			int lcm = lcm(d1, d2);
-			int fn1 = ((((d1 * w1) + n1) * lcm) + (((d2 * w2) + n2)) * lcm);
-			int fd1 = (lcm * d1);
-			int fw1 = fn1 / fd1;
-			fn1 = fn1 % fd1;
-			fn1 = fn1 / lcm;
-			fd1 = fd1 / lcm;
-			FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
+
+			if (w2 < 0) { 
+				n2 *= -1;
+			}
+			if (d1 != d2) {
+				int temp = d1;
+				d1 = d1 * d2;
+				n1 = n1 * d2;
+				d2 = d2 * temp;
+				n2 = n2 * temp;
+			}
+			n1 += n2;
+			w1 += w2;
+			w1 += (n1/d1);
+			n1 = n1 % d1;
+
+			if (w1 < 0 && n1 < 0) {
+				n1 *= -1;
+			}
+			if (n1 > d1 || n1 == d1) {
+				while(n1 > d1) {
+					n1 -= d1;
+					w1++;
+				}
+			}
+			for(int z = n1; z > 1; z--) {
+				if (n1 % z == 0 && d1 % z == 0) {
+					n1 /= z;
+					d1 /= z;
+				}	
+			}
+			FINAL = split[2] + ",    " + other + ",     " + Integer.toString(w1) + "_" + Integer.toString(n1) + "/" + Integer.toString(d1);
 			
 			return FINAL;
 		//calculation -
 		} else if (oper.contentEquals("-") == true) {
-			int lcm = lcm(d1, d2);
-			int fn1 = ((((d1 * w1) + n1) * lcm) - (((d2 * w2) + n2)) * lcm);
-			int fd1 = lcm * d1;
-			int fw1 = fn1 / fd1;
-			fn1 = fn1 % fd1;
+			if (w1 < 0) { 
+				n1 *= -1;
+			}
+
+			if (w2 < 0) { 
+				n2 *= -1;
+			}
+			if (d1 != d2) {
+				int temp = d1;
+				d1 = d1 * d2;
+				n1 = n1 * d2;
+				d2 = d2 * temp;
+				n2 = n2 * temp;
+			}
+			n1 -= n2;
+			w1 -= w2;
+			if (n1 < 0) {
+				int temp = n1;
+				w1 -= 1;
+				n1 = d1;
+				n1 -= temp;
+			}
+			if (w1 < 0 && n1 < 0) {
+				n1 *= -1;
+			}
+			if (n1 > d1 || n1 == d1) {
+				while(n1 > d1) {
+					n1 -= d1;
+					w1++;
+				}
+			}
+			for(int z = n1; z > 1; z--) {
+				if (n1 % z == 0 && d1 % z == 0) {
+					n1 /= z;
+					d1 /= z;
+				}	
+			}
 			
-			FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
+			FINAL = split[2] + ",    " + other + ",     " + Integer.toString(w1) + "_" + Integer.toString(n1) + "/" + Integer.toString(d1);
 
 			return FINAL;
 		//calculation *
@@ -147,34 +175,94 @@ public class FracCalc {
 					w1++;
 				}
 			}
-			
+			for(int z = n1; z > 1; z--) {
+				if(n1 % z == 0 && d1 % z == 0) {
+					n1 /= z ;
+					d1 /= z;
+				}
 			}
-			FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
+			if ( n1 == 0) {
+				FINAL = w1 + " ";
+			}
+			FINAL = split[2] + ",    " + other + ",     " + Integer.toString(w1) + "_" + Integer.toString(n1) + "/" + Integer.toString(d1);
 
 			return FINAL;
 		//calculation /
 		} else if (oper.contentEquals(" / ") == true) {
-			if (n1 == 0 || n2 == 0) {
-				return FINAL = "0";
-				}
-			int fn1 = d1 * n2;
-			int fd1 = n1 * d2;
-			int fw1 = w1 / w2;
-			if (fw1 == 0) {
-				FINAL = Integer.toString(fn1) + "/" + Integer.toString(fd1);
-
-				return FINAL;
+			if (w1 < 0) { 
+				n1 *= -1;
 			}
-			FINAL = Integer.toString(fw1) + "_" + Integer.toString(fn1) + "/" + Integer.toString(fd1);
+
+			if (w2 < 0) { 
+				n2 *= -1;
+			} 
+
+			n1 = (w1 * d1) + n1;
+			n2 = (w2 * d2) + n2;
+
+			int temp = n2;
+			n2 = d2;
+			d2 = temp;
+
+			w1 = 0;
+			w1 *= w2;
+			n1 *= n2;
+			d1 *= d2;
+			if (w1 < 0 && n1 < 0) {
+				n1 *= -1;
+			}
+			if (n1 < 0 && d1 < 0) {
+				d1 *= -1;
+				n1 *= -1;
+			}
+			if (n1 > d1 || n1 == d1) {
+				while(n1 > d1) {
+					n1 -= d1;
+					w1++;
+				}
+			}
+			
+			for(int z = n1; z > 1; z--) {
+				if (n1 % z == 0 && d1 % z == 0) {
+					n1 /= z;
+					d1 /= z;
+				}	
+			}
+			
+			FINAL = split[2] + ",    " + other + ",     " + Integer.toString(w1) + "_" + Integer.toString(n1) + "/" + Integer.toString(d1);
 
 			return FINAL;
+			} 
+	}
+	public static String getA(String fra1) { 
+		// TODO: Implement this function to produce the solution to the input
+		//splits up fraction 2
+		if (fra1.indexOf("/") == -1) {
+			String w1= fra1.substring(0, fra1.length());
+			String n1= "0";
+			String d1= "1";
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
+			return answer;
+		} else if (fra1.indexOf("_") == -1 ) {
+			String w1= "0";
+			String n1= fra1.substring(0, fra1.indexOf("/"));
+			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
+			return answer;
+		} else if (fra1.indexOf("/") != -1 && fra1.indexOf("_") != -1) {
+			String w1 = fra1.substring(0, fra1.indexOf("_"));
+			String n1= fra1.substring(fra1.indexOf("_") + 1, fra1.indexOf("/"));
+			String d1= fra1.substring(fra1.indexOf("/") + 1, fra1.length());
+			String answer = "whole:" + w1+ " numerator:" + n1+ " denominator:" + d1 ;
+			return answer;
 		} else {
-			String No = "no";
-			return No;
+			String answer = "whole:-1 numerator:-1 denominator:-1";
+			return answer;
 		}
-		}
-		
-	//assist coding for greatest common denominator and least common multiple
+	}	
+// TODO: Fill in the space below with any helper methods that you think you will
+// need
+//assist coding for greatest common denominator and least common multiple
 	public static int lcm(int a, int b) 
     { 
         return (a*b)/gcd(a, b); 
@@ -190,5 +278,3 @@ public class FracCalc {
     
 	
 }
-// TODO: Fill in the space below with any helper methods that you think you will
-// need
