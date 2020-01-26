@@ -1,0 +1,21 @@
+Total Grade:  65/115
+
+Input Parsing: 10/15
+Addition & Subtraction: 10/20
+Multiplication & Division: 10/20
+Fraction Reduction: 0/15
+Output is a Mixed Fraction: 10/15
+Handles Mixed Fractions: 10/10
+Handles Negatives: 10/15
+Code Comments: 5/5
+
+You didn't handle the "quit" command properly, so 5 points off for input
+parsing.  The rest of your project was difficult to grade.  It did many
+calculations correctly, even complex ones, but failed on some very basic
+ones (like 1 - 2 and 1 / 2).  You didn't appear to have gotten to the point
+of reducing your answer or presenting it as a mixed number, but you get at
+least partial credit on all the calculation types, because they work some
+of the time.
+
+(Note: I graded this as it was on the due date.  To get partial credit on
+work done after the due date, let Mr. Harpe know when you are finished.)
